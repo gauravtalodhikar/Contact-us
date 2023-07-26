@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymleaf.org">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Contacts Management System</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+    <br>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Contact Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" th:href="@{/contacts}">Contact Management <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+<br>
+<br>
+
+        <div class = "container">
+            <div class = "row">
+                <h1> Contact List </h1>
+
+            </div>
+            <div class = "row">
+                <div class = "col-lg-3">
+                    <a th:href = "@{/contacts/new}" class="btn btn-primary btn-sm mb-3">Add Contact</a>
+                </div>
+                
+            </div>
+            <table class="table table-light table-striped table-borderd">
+                <thead class = "thead-dark">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email Id</th>
+                        <th>Mobile No.</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "contact: ${contacts}">
+                        <td th:text = "${contact.firstname}"></td>
+                        <td th:text = "${contact.lastname}"></td>
+                        <td th:text = "${contact.email}"></td>
+                        <td th:text = "${contact.moblieno}"></td>
+                        <td>
+                            <a th:href="@{/contacts/edit/{id}(id=${contact.id})}" class = "btn btn-primary"> Update </a>
+                            <a th:href="@{/contacts/{id}(id=${contact.id})}" class = "btn btn-danger"> Delete </a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+</html>
